@@ -1,0 +1,5 @@
+#!/bin/sh
+
+#Deletes all local branches that have been merged into maste
+
+git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d
