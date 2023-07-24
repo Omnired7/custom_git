@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Rebases all active branches on top of Develop after rebasing Develop on top of Master test1
+
+defaultBranch=$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)
+
+#Pull master & develop
+git checkout $defaultBranch && git pull
+git checkout develop && git pull
+
+#Rebase develop on top of master
+git rebase $defaultBranch && git push
+
+#Rebase all active branches on top of develop & force push them
+git branch --no-merged develop | xargs -I {} sh -c 'git checkout "$1" && git rebase develop && git push -f' _ {}

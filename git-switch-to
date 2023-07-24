@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Stashes from current branch & pops stash to new given branch
+
 newBranch=$1
 
 if [ ! -z "$1" ]
