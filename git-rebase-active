@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Rebases all active branches on top of Develop after rebasing Develop on top of Master
+
+#Pull master & develop
+git checkout master && git pull
+git checkout develop && git pull
+
+#Rebase develop on top of master
+git rebase master && git push
+
+#Rebase all active branches on top of develop & force push them
+git branch --no-merged develop | xargs git checkout && git rebase develop && git push -f
