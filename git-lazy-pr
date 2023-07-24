@@ -4,7 +4,7 @@
 
 if [ ! -z "$1" ]
 then
-  hub pull-request -b $1
+  gh pr create --fill -B $1
 else
   echo "Branch name is not specified"
 fi
