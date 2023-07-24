@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Rebases all active branches on top of Develop after rebasing Develop on top of Master test1
+# Rebases all active branches on top of Develop after rebasing Develop on top of Master test3
 
 defaultBranch=$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)
 
