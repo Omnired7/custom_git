@@ -1,0 +1,10 @@
+#! /bin/sh
+
+# This script creates a pull Request for into the provided branch
+
+if [ ! -z "$1" ]
+then
+  hub pull-request -b $1
+else
+  echo "Branch name is not specified"
+fi
