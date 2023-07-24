@@ -2,12 +2,14 @@
 
 # Rebases all active branches on top of Develop after rebasing Develop on top of Master
 
+$defaultBranch = $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+
 #Pull master & develop
-git checkout master && git pull
+git checkout $defaultBranch && git pull
 git checkout develop && git pull
 
 #Rebase develop on top of master
-git rebase master && git push
+git rebase $defaultBranch && git push
 
 #Rebase all active branches on top of develop & force push them
 git branch --no-merged develop | xargs git checkout && git rebase develop && git push -f
