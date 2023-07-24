@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Rebases all active branches on top of Develop after rebasing Develop on top of Master
 
@@ -12,9 +12,4 @@ git checkout develop && git pull
 git rebase $defaultBranch && git push
 
 #Rebase all active branches on top of develop & force push them
-rebase_and_push() {
-  git checkout $1 && git rebase develop && git push -f
-}
-
-export -f rebase_and_push
-git branch --no-merged develop | xargs -I {} bash -c 'rebase_and_push "$@"' _ {}
+git branch --no-merged develop | xargs -I {} sh -c 'git checkout "$1" && git rebase develop && git push -f' _ {}
